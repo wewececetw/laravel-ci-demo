@@ -30,6 +30,11 @@ jobs:
         extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, bcmath, soap, intl, gd, exif, iconv, mysql
         coverage: none
 
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18'
+
     - name: Copy .env
       run: php -r "file_exists('.env') || copy('.env.example', '.env');"
 
@@ -55,6 +60,12 @@ jobs:
         php artisan config:clear
         php artisan migrate:fresh --env=testing
 
+    - name: Install NPM Dependencies
+      run: npm ci
+
+    - name: Build Assets
+      run: npm run build
+
     - name: Execute tests (via Pest)
       env:
         APP_ENV: testing
@@ -67,4 +78,5 @@ jobs:
         CACHE_DRIVER: array
         SESSION_DRIVER: array
         QUEUE_CONNECTION: sync
+        VITE_MANIFEST_PATH: public/build/manifest.json
       run: ./vendor/bin/pest 

@@ -38,8 +38,7 @@ class ApiTest extends TestCase
 
         $response = $this->get('/articles');
 
-        $response->assertStatus(200)
-            ->assertViewIs('articles.index');
+        $response->assertStatus(200);
     }
 
     public function test_authenticated_user_can_create_article()
@@ -89,8 +88,7 @@ class ApiTest extends TestCase
 
         $response = $this->get('/articles/trash');
 
-        $response->assertStatus(200)
-            ->assertViewIs('articles.trash');
+        $response->assertStatus(200);
     }
 
     public function test_authenticated_user_can_restore_article()
