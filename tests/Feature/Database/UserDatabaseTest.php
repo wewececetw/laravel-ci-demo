@@ -15,14 +15,14 @@ class UserDatabaseTest extends TestCase
         $userData = [
             'name' => 'Test User',
             'email' => 'test@example.com',
-            'password' => bcrypt('password123')
+            'password' => bcrypt('password123'),
         ];
 
         $user = User::create($userData);
 
         $this->assertDatabaseHas('users', [
             'name' => 'Test User',
-            'email' => 'test@example.com'
+            'email' => 'test@example.com',
         ]);
 
         $this->assertEquals('Test User', $user->name);
@@ -35,13 +35,13 @@ class UserDatabaseTest extends TestCase
 
         $user->update([
             'name' => 'Updated Name',
-            'email' => 'updated@example.com'
+            'email' => 'updated@example.com',
         ]);
 
         $this->assertDatabaseHas('users', [
             'id' => $user->id,
             'name' => 'Updated Name',
-            'email' => 'updated@example.com'
+            'email' => 'updated@example.com',
         ]);
     }
 
@@ -53,20 +53,20 @@ class UserDatabaseTest extends TestCase
         $user->delete();
 
         $this->assertDatabaseMissing('users', [
-            'id' => $userId
+            'id' => $userId,
         ]);
     }
 
     public function test_user_email_must_be_unique()
     {
         User::factory()->create([
-            'email' => 'test@example.com'
+            'email' => 'test@example.com',
         ]);
 
         $this->expectException(\Illuminate\Database\QueryException::class);
 
         User::factory()->create([
-            'email' => 'test@example.com'
+            'email' => 'test@example.com',
         ]);
     }
-} 
+}

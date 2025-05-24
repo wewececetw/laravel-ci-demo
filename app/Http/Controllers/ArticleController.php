@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Article;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ArticleController extends Controller
 {
@@ -15,6 +15,7 @@ class ArticleController extends Controller
     public function index()
     {
         $articles = Auth::user()->articles()->latest()->paginate(10);
+
         return view('articles.index', compact('articles'));
     }
 
@@ -44,11 +45,11 @@ class ArticleController extends Controller
         return redirect()->route('articles.index')->with('success', '文章新增成功');
     }
 
-
     // 編輯文章
     public function edit(Article $article)
     {
         $this->authorize('update', $article);
+
         return view('articles.edit', compact('article'));
     }
 
@@ -81,6 +82,7 @@ class ArticleController extends Controller
     {
 
         $articles = Auth::user()->articles()->onlyTrashed()->latest()->paginate(10);
+
         return view('articles.trash', compact('articles'));
     }
 

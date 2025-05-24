@@ -25,7 +25,7 @@ class ExampleTest extends TestCase
     public function test_database_connection(): void
     {
         $this->assertDatabaseHas('migrations', [
-            'migration' => '0001_01_01_000000_create_users_table'
+            'migration' => '0001_01_01_000000_create_users_table',
         ]);
     }
 }

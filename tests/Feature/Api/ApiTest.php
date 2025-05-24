@@ -2,8 +2,8 @@
 
 namespace Tests\Feature\Api;
 
-use App\Models\User;
 use App\Models\Article;
+use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
@@ -47,7 +47,7 @@ class ApiTest extends TestCase
 
         $articleData = [
             'title' => 'Test Article',
-            'content' => 'This is a test article content'
+            'content' => 'This is a test article content',
         ];
 
         $response = $this->post('/articles', $articleData);
@@ -62,7 +62,7 @@ class ApiTest extends TestCase
 
         $updateData = [
             'title' => 'Updated Title',
-            'content' => 'Updated content'
+            'content' => 'Updated content',
         ];
 
         $response = $this->put("/articles/{$this->article->id}", $updateData);
@@ -113,4 +113,4 @@ class ApiTest extends TestCase
         $response->assertStatus(302);
         $this->assertDatabaseMissing('articles', ['id' => $this->article->id]);
     }
-} 
+}

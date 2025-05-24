@@ -13,7 +13,7 @@ class UserTest extends TestCase
     public function test_user_has_name()
     {
         $user = User::factory()->create([
-            'name' => 'Test User'
+            'name' => 'Test User',
         ]);
 
         $this->assertEquals('Test User', $user->name);
@@ -22,7 +22,7 @@ class UserTest extends TestCase
     public function test_user_has_email()
     {
         $user = User::factory()->create([
-            'email' => 'test@example.com'
+            'email' => 'test@example.com',
         ]);
 
         $this->assertEquals('test@example.com', $user->email);
@@ -31,7 +31,7 @@ class UserTest extends TestCase
     public function test_user_can_have_password()
     {
         $user = User::factory()->create([
-            'password' => bcrypt('password123')
+            'password' => bcrypt('password123'),
         ]);
 
         $this->assertTrue(password_verify('password123', $user->password));
@@ -42,4 +42,4 @@ class UserTest extends TestCase
         $user = User::factory()->create();
         $this->assertInstanceOf(\Illuminate\Database\Eloquent\Collection::class, $user->articles);
     }
-} 
+}

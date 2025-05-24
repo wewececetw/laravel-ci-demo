@@ -1,9 +1,8 @@
 <?php
 
+use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ArticleController;
-
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/articles/trash', [ArticleController::class, 'trash'])->name('articles.trash');

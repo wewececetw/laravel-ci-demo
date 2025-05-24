@@ -20,8 +20,8 @@ class UserApiTest extends TestCase
 
         $response = $this->putJson('/api/user', [
             'name' => 'Updated Name',
-            'email' => 'updated@example.com'
+            'email' => 'updated@example.com',
         ]);
         $response->assertStatus(404);
     }
-} 
+}

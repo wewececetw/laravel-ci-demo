@@ -31,4 +31,4 @@ class ArticleFactory extends Factory
             'user_id' => User::factory(),
         ];
     }
-} 
+}
