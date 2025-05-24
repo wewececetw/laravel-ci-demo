@@ -59,3 +59,88 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+# Laravel CI/CD Demo
+
+這是一個使用 Laravel 框架的示範專案，展示了如何設置持續整合和持續部署（CI/CD）流程。
+
+## 系統需求
+
+- PHP 8.4 或更高版本
+- Composer
+- Docker 和 Docker Compose
+- MySQL 8.0
+- Node.js 和 NPM
+
+## 安裝步驟
+
+1. 克隆專案：
+```bash
+git clone [您的專案URL]
+cd laravel-ci-demo
+```
+
+2. 安裝 PHP 依賴：
+```bash
+composer install
+```
+
+3. 複製環境配置文件：
+```bash
+cp .env.example .env
+```
+
+4. 生成應用程式金鑰：
+```bash
+php artisan key:generate
+```
+
+5. 使用 Docker Compose 啟動服務：
+```bash
+docker-compose up -d
+```
+
+6. 執行資料庫遷移：
+```bash
+php artisan migrate
+```
+
+7. 安裝前端依賴並編譯資源：
+```bash
+npm install
+npm run dev
+```
+
+## 開發
+
+- 本地開發伺服器：`php artisan serve`
+- 前端開發伺服器：`npm run dev`
+
+## 測試
+
+執行測試：
+```bash
+php artisan test
+```
+
+## CI/CD 流程
+
+本專案使用 GitHub Actions 進行持續整合和部署：
+
+1. 當推送代碼到 main 分支或創建 Pull Request 時，會自動觸發測試流程
+2. 測試包括：
+   - PHP 單元測試
+   - 功能測試
+   - 代碼覆蓋率報告
+
+## 貢獻指南
+
+1. Fork 專案
+2. 創建功能分支 (`git checkout -b feature/AmazingFeature`)
+3. 提交更改 (`git commit -m 'Add some AmazingFeature'`)
+4. 推送到分支 (`git push origin feature/AmazingFeature`)
+5. 開啟 Pull Request
+
+## 授權
+
+此專案採用 MIT 授權條款 - 詳見 [LICENSE](LICENSE) 文件
