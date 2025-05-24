@@ -29,6 +29,7 @@ jobs:
         php-version: '8.2'
         extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, bcmath, soap, intl, gd, exif, iconv, mysql
         coverage: none
+        tools: cs2pr
 
     - name: Setup Node.js
       uses: actions/setup-node@v3
@@ -65,6 +66,11 @@ jobs:
 
     - name: Build Assets
       run: npm run build
+
+    - name: Check code style
+      run: |
+        composer require --dev friendsofphp/php-cs-fixer
+        vendor/bin/php-cs-fixer fix --dry-run --diff --config=.php-cs-fixer.php
 
     - name: Execute tests (via Pest)
       env:
