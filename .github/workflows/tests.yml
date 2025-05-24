@@ -44,7 +44,7 @@ jobs:
 
     - name: Create Database
       run: |
-        mysql -u root -ppassword -e "CREATE DATABASE IF NOT EXISTS laravel_test"
+        mysql -h 127.0.0.1 -P 3306 -u root -ppassword -e "CREATE DATABASE IF NOT EXISTS laravel_test"
         php artisan migrate:fresh --env=testing
 
     - name: Execute tests (via PHPUnit)
